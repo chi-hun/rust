@@ -13,6 +13,7 @@ fn main() {
     dbg!(&size_wh);
     let area = ca_size(&size_wh);
     println!("area : {}", area);
+    println!("haha");
 
 }
 
