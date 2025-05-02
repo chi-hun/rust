@@ -11,6 +11,12 @@ impl Psize {
     fn scope(&self, sc: u32) -> u32 {
         self.width * self.height * sc
     }
+    fn make_squre(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,  
+        }
+    }
 }
 
 fn main() {
@@ -21,4 +27,5 @@ fn main() {
     dbg!(&size_wh);
     println!("area : {}", size_wh.area());
     println!("scope : {}", size_wh.scope(2));
+    dbg!(Psize::make_squre(100));
 }
