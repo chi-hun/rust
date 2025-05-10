@@ -1,18 +1,23 @@
-//10.1
-use g_game::{Summary, News, Tweet};
+//11.1
+// use g_game::{Summary, News, Tweet};
 
 fn main() {
-    let news1 = News{
-        title : String::from("war"),
-        main : String::from("war is coming?"),
-        who : String::from("faker"),
-    };
-    println!("{}", news1.sumarize());
+    let first_str = String::from("hello dd");
+    let r;
+    {
+        let second_str = "what";
+        let r = llwhat(&first_str.as_str(), &second_str);
+    }
+    
 
-    let tweet1 = Tweet{
-        title : String::from("v-line"),
-        hash : String::from("#face"),
-        who : String::from("faker"),
-    };
-    println!("{}", tweet1.sumarize());
+    fn llwhat<'a>(f: &'a str, s: &'a str) -> &'a str {
+        if f.len() > s.len() {
+            f
+        } else {
+            s
+        }
+
+    }
+
+    println!("{}", r);
 }
