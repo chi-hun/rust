@@ -1,23 +1,19 @@
-//11.1
+//12.3
 // use g_game::{Summary, News, Tweet};
+use std::env;
+use g_game::Config;
+
 
 fn main() {
-    let first_str = String::from("hello dd");
-    let r;
-    {
-        let second_str = "what";
-        let r = llwhat(&first_str.as_str(), &second_str);
+    let args: Vec<String> = env::args().collect();
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {}", err);
+        std::process::exit(1);
+    });
+    println!("{}", config.query);
+    println!("{}", config.file_path);
+    if let Err(e) = g_game::run(config) {
+        println!("Application error: {}", e);
+        std::process::exit(1);
     }
-    
-
-    fn llwhat<'a>(f: &'a str, s: &'a str) -> &'a str {
-        if f.len() > s.len() {
-            f
-        } else {
-            s
-        }
-
-    }
-
-    println!("{}", r);
 }

@@ -1,28 +1,25 @@
-pub trait Summary {
-    //fn sumarize(&self) -> String;
+use std::fs;
+use std::error::Error;
 
-    fn sumarize(&self) -> String {
-        format!("fffff")
+pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let info: String = fs::read_to_string(config.file_path)?;
+    println!("info : \n{}", info);
+    Ok(())
+}
+
+pub struct Config {
+    pub query : String,
+    pub file_path : String,
+}
+
+impl Config {
+    pub fn new(arg: &[String]) -> Result<Config, &'static str> {
+        if arg.len() < 3 {
+            return Err("not enough arguments");
+        }
+
+        let query = arg[1].clone();
+        let file_path = arg[2].clone();
+        Ok(Config {query, file_path})
     }
-}
-
-pub struct News {
-    pub title : String,
-    pub main : String,
-    pub who : String,
-}
-
-impl Summary for News {
-    fn sumarize(&self) -> String {
-        format!("title : {}, main : {}, who : {}", self.title, self.main, self.who)
-    }
-}
-
-pub struct Tweet {
-    pub title : String,
-    pub hash : String,
-    pub who : String,
-}
-
-impl Summary for Tweet {
 }
