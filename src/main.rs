@@ -1,4 +1,4 @@
-//12.3
+//12.6
 // use g_game::{Summary, News, Tweet};
 use std::env;
 use g_game::Config;
@@ -7,13 +7,13 @@ use g_game::Config;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {}", err);
+        eprintln!("Problem parsing arguments: {}", err);
         std::process::exit(1);
     });
     println!("{}", config.query);
     println!("{}", config.file_path);
     if let Err(e) = g_game::run(config) {
-        println!("Application error: {}", e);
+        eprintln!("Application error: {}", e);
         std::process::exit(1);
     }
 }
