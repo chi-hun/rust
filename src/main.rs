@@ -1,19 +1,19 @@
-//12.6
+//13.1
 // use g_game::{Summary, News, Tweet};
-use std::env;
-use g_game::Config;
+#[derive(Debug)]
+struct Ww {
+    w: i32,
+    s: i32,
+}
 
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args).unwrap_or_else(|err| {
-        eprintln!("Problem parsing arguments: {}", err);
-        std::process::exit(1);
-    });
-    println!("{}", config.query);
-    println!("{}", config.file_path);
-    if let Err(e) = g_game::run(config) {
-        eprintln!("Application error: {}", e);
-        std::process::exit(1);
-    }
+    let mut ws = [
+        Ww{w: 5, s: 2},
+        Ww{w: 3, s: 4},
+        Ww{w: 1, s: 6},
+    ];
+    ws.sort_by_key(|s| s.w);
+    
+    println!("{:#?}", ws)
 }
