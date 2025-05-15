@@ -1,19 +1,21 @@
-//13.1
+//16.1
 // use g_game::{Summary, News, Tweet};
-#[derive(Debug)]
-struct Ww {
-    w: i32,
-    s: i32,
-}
-
+use std::thread;
+use std::time::Duration;
 
 fn main() {
-    let mut ws = [
-        Ww{w: 5, s: 2},
-        Ww{w: 3, s: 4},
-        Ww{w: 1, s: 6},
-    ];
-    ws.sort_by_key(|s| s.w);
-    
-    println!("{:#?}", ws)
+    let side_1 =thread::spawn(|| {
+        for i in 1..10 {
+            println!("num : {} for side_1 thread", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+
+    for i in 1..5 {
+        println!("num : {} for main thread", i);
+        thread::sleep(Duration::from_millis(1));
+    }
+
+    side_1.join().unwrap();
 }
