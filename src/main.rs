@@ -1,21 +1,12 @@
-//16.1
-// use g_game::{Summary, News, Tweet};
-use std::thread;
-use std::time::Duration;
+//19.1
 
-fn main() {
-    let side_1 =thread::spawn(|| {
-        for i in 1..10 {
-            println!("num : {} for side_1 thread", i);
-            thread::sleep(Duration::from_millis(1));
-        }
-    });
+fn main() {    
+    let mut num = 5;
 
+    let r1 = &num as *const i32;
+    let r2 = &mut num as *mut i32;
 
-    for i in 1..5 {
-        println!("num : {} for main thread", i);
-        thread::sleep(Duration::from_millis(1));
-    }
-
-    side_1.join().unwrap();
+    
+    println!("r1 is: {}", *r1);
+    println!("r2 is: {}", *r2);
 }
